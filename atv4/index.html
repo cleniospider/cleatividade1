@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texto sobre Imagem</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Georgia', serif;
+        height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), /* camada escura sobre a imagem */
+            url(rio.jpg) no-repeat center center/cover;
+    }
+
+    .texto-sobreposto {
+        background-color: rgba(0, 0, 0, 0.6); /* fundo ainda mais escuro */
+        color: red;
+        font-size: 3.3rem; /* texto maior */
+        line-height: 1.35;
+        padding: 40px 50px;
+        margin-top: 40px;
+        max-width: 90%;
+        text-align: justify;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 0px;
+    }
+
+    @media (max-width: 768px) {
+        .texto-sobreposto {
+            font-size: 1.8rem;
+            padding: 25px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="texto-sobreposto">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat <br>
+    cupiditate facere cumque ratione odio doloremque deserunt dignissimos sunt eum alias voluptatum repellendus, quis, dolores perspiciatis enim vero nam quisquam possimus.
+</div>
+
+</body>
+</html>
+
+
