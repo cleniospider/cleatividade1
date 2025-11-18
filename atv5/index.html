@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo Flexbox e Grid</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            background: #008cff;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        .card h2 {
+            color: #0066cc;
+        }
+
+        /* --- EXEMPLO FLEXBOX --- */
+        .flex-example {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .flex-example div {
+            background: #008cff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            flex: 1;
+        }
+
+        /* --- EXEMPLO GRID --- */
+        .grid-example {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .grid-example div {
+            background: #00b36b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Resumo das Principais Funcionalidades: Flexbox e Grid</h1>
+        <p>Página criada para apresentar as principais propriedades de cada um.</p>
+    </header>
+
+    <section class="container">
+
+        <!-- FLEXBOX -->
+        <div class="card">
+            <h2>FLEXBOX</h2>
+            <p><strong>O que é:</strong> Sistema de layout em uma direção (linha ou coluna).</p>
+            
+            <h3>Principais Propriedades:</h3>
+            <ul>
+                <li><strong>flex-direction</strong> – define direção dos itens.</li>
+                <li><strong>justify-content</strong> – alinha no eixo principal.</li>
+                <li><strong>align-items</strong> – alinha no eixo cruzado.</li>
+                <li><strong>flex-wrap</strong> – permite quebra de linha.</li>
+                <li><strong>flex-grow / flex-shrink</strong> – controla expansão e redução.</li>
+                <li><strong>order</strong> – muda a ordem dos itens.</li>
+            </ul>
+
+            <h3>Exemplo Flexbox:</h3>
+            <div class="flex-example">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="card">
+            <h2>CSS GRID</h2>
+            <p><strong>O que é:</strong> Sistema de layout em duas dimensões (linhas e colunas).</p>
+
+            <h3>Principais Propriedades:</h3>
+            <ul>
+                <li><strong>grid-template-columns / rows</strong> – define estrutura.</li>
+                <li><strong>grid-template-areas</strong> – cria áreas nomeadas.</li>
+                <li><strong>gap</strong> – espaçamento entre células.</li>
+                <li><strong>grid-column / grid-row</strong> – posiciona itens.</li>
+                <li><strong>repeat / minmax / auto-fit</strong> – ajuda no responsivo.</li>
+            </ul>
+
+            <h3>Exemplo Grid:</h3>
+            <div class="grid-example">
+                <div>A</div>
+                <div>B</div>
+                <div>C</div>
+                <div>D</div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
