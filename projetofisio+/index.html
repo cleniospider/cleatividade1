@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisio+ | Saúde e Bem-estar</title>
+    <style>
+        /* --- CSS GERAL E TIPOGRAFIA --- */
+        :root {
+            --primary-color: #00bfa5;
+            --primary-dark: #008f7a;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-body: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e1e4e8;
+            --font-main: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+        }
+       
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+       
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+       
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+       
+        /* CONTAINER */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+       
+        /* --- BOTÕES --- */
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,191,165,0.2);
+        }
+        .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
+       
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .btn-outline:hover { background-color: var(--primary-color); color: white; }
+       
+        /* --- HEADER --- */
+        header { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: #2c3e50; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary-color); }
+        nav ul { display: flex; gap: 25px; align-items: center; font-weight: 500; font-size: 0.95rem; }
+        nav a:hover { color: var(--primary-color); }
+       
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: 0.5s;
+        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; font-weight: 300; }
+
+
+        /* --- SERVIÇOS --- */
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; color: #2c3e50; }
+        .services { padding: 80px 20px; background-color: var(--bg-body); }
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+       
+        .card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color); /* Borda sutil */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-color: var(--primary-color); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; margin-bottom: 20px; }
+        .card h3 { color: #2c3e50; margin-bottom: 10px; font-size: 1.25rem; }
+        .card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+
+        /* --- SEÇÕES INFO (Alternadas) --- */
+        .section-info { padding: 80px 0; background-color: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);}
+        .split-container { display: flex; align-items: center; gap: 60px; }
+        .split-text { flex: 1; }
+        .split-text h2 { color: #2c3e50; margin-bottom: 20px; font-size: 2rem; line-height: 1.3; }
+        .split-text p { color: var(--text-light); margin-bottom: 20px; font-size: 1.05rem; }
+        .split-image { flex: 1; }
+        .split-image img { width: 100%; border-radius: 8px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); object-fit: cover; height: 350px; }
+
+
+        /* --- PAINEL DE GESTÃO (Novo Layout Organizado) --- */
+        #painel-gestao { display: none; padding: 60px 20px; background-color: var(--bg-body); }
+        .painel-header { text-align: center; margin-bottom: 40px; }
+        .painel-header h2 { font-size: 2rem; color: #2c3e50; margin-bottom: 10px; }
+        .painel-header p { color: var(--text-light); }
+
+
+        /* Grade 3x3 para ficar simétrica com 9 itens */
+        .painel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+
+        .painel-card {
+            background-color: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color); /* Borda formal */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+       
+        .painel-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+
+        .painel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+       
+        .painel-card:hover::after { transform: scaleX(1); }
+
+
+        .painel-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--primary-color); }
+        .painel-title { font-weight: 600; color: #444; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+
+        /* --- FOOTER --- */
+        footer { background-color: #2c3e50; color: #ecf0f1; text-align: center; padding: 30px 0; margin-top: auto; font-size: 0.9rem; }
+       
+        /* --- USER AREA --- */
+        .user-area { display: flex; gap: 15px; align-items: center; font-weight: 600; color: #2c3e50; font-size: 0.9rem; }
+        .btn-sair {
+            color: #e74c3c;
+            cursor: pointer;
+            border: 1px solid #e74c3c;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+        .btn-sair:hover { background: #e74c3c; color: white; }
+
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            .painel-grid { grid-template-columns: repeat(2, 1fr); } /* 2 colunas no tablet */
+            .split-container { flex-direction: column; gap: 30px; }
+            .hero { height: 300px; }
+            .hero h1 { font-size: 2rem; }
+        }
+        @media (max-width: 600px) {
+            .painel-grid { grid-template-columns: 1fr; } /* 1 coluna no celular */
+            .container { max-width: 100%; padding: 0 15px; }
+            .nav-links { display: none; } /* Em um cenário real precisaria de menu hambúrguer */
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">Fisio<span>+</span></a>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li id="menu-servicos"><a href="#secao-marketing">Serviços</a></li>
+                   
+                    <li id="menu-login">
+                        <a href="login.html" class="btn-outline">Área do Cliente</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <section class="hero" id="hero-section">
+        <div class="container">
+            <div class="hero-text">
+                <h1 id="titulo-hero">Movimento é Vida.<br>Recupere seu bem-estar.</h1>
+                <p id="subtitulo-hero">Tecnologia avançada e cuidado humanizado para sua reabilitação.</p>
+                <div id="cta-container" style="margin-top: 30px;">
+                    <a href="login.html" class="btn-primary">Agendar Avaliação</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="services container" id="secao-marketing">
+        <h2 class="section-title">Nossas Especialidades</h2>
+        <div class="grid-cards">
+           
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80" alt="Fisioterapia Motora" class="card-img">
+                <h3>Fisioterapia Motora</h3>
+                <p>Reabilitação focada na recuperação funcional pós-trauma ou cirurgia. Protocolos exclusivos para ganho de força e amplitude de movimento.</p>
+            </div>
+
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Pilates" class="card-img">
+                <h3>Pilates Clínico</h3>
+                <p>Método integrado para fortalecimento do core e correção postural. Ideal para prevenção de lesões e tratamento de dores crônicas.</p>
+            </div>
+
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600697395543-ef3ee6e9af7b?auto=format&fit=crop&w=600&q=80" alt="Quiropraxia" class="card-img">
+                <h3>Quiropraxia</h3>
+                <p>Ajustes precisos da coluna vertebral para otimização do sistema nervoso. Alívio imediato de tensões e melhora da mobilidade global.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-info" id="secao-info-1">
+        <div class="container split-container">
+            <div class="split-text">
+                <h2>Abordagem Personalizada</h2>
+                <p>Na Fisio+, cada paciente recebe um plano de tratamento único. Nossa metodologia une evidência científica, tecnologia e um olhar atento às suas necessidades individuais.</p>
+                <p>Do diagnóstico à alta, acompanhamos cada etapa da sua evolução.</p>
+            </div>
+            <div class="split-image">
+                <img src="fisioterapia-preventiva.jpeg" alt="Atendimento Personalizado">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-info" id="secao-info-2" style="background-color: #f8f9fa;">
+        <div class="container split-container">
+            <div class="split-image">
+                <img src="recepcao-de-clinica-medica.webp" alt="Estrutura Moderna">
+            </div>
+            <div class="split-text">
+                <h2>Estrutura de Ponta</h2>
+                <p>Ambiente climatizado, equipamentos de última geração e total acessibilidade. Nosso espaço foi projetado para oferecer conforto e segurança durante todo o seu tratamento.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="painel-gestao">
+        <div class="container">
+            <div class="painel-header">
+                <h2>Painel Administrativo</h2>
+                <p>Selecione um módulo para iniciar o gerenciamento</p>
+            </div>
+           
+            <div class="painel-grid">
+                <a href="cadastrocliente.html" class="painel-card">
+                    <div class="painel-icon">👥</div>
+                    <div class="painel-title">Clientes</div>
+                </a>
+                <a href="cadastroprofissional.html" class="painel-card">
+                    <div class="painel-icon">👨‍⚕️</div>
+                    <div class="painel-title">Profissionais</div>
+                </a>
+                <a href="agendamentos.html" class="painel-card">
+                    <div class="painel-icon">📅</div>
+                    <div class="painel-title">Agenda</div>
+                </a>
+
+
+                <a href="checkin.html" class="painel-card">
+                    <div class="painel-icon">✅</div>
+                    <div class="painel-title">Check-in</div>
+                </a>
+                <a href="prontuarios.html" class="painel-card">
+                    <div class="painel-icon">📋</div>
+                    <div class="painel-title">Prontuários</div>
+                </a>
+                <a href="financeiro.html" class="painel-card">
+                    <div class="painel-icon">💰</div>
+                    <div class="painel-title">Financeiro</div>
+                </a>
+               
+                <a href="mensalidades.html" class="painel-card">
+                    <div class="painel-icon">💳</div>
+                    <div class="painel-title">Mensalidades</div>
+                </a>
+
+
+                <a href="relatorios.html" class="painel-card">
+                    <div class="painel-icon">📊</div>
+                    <div class="painel-title">Relatórios</div>
+                </a>
+                <a href="configuracoes.html" class="painel-card">
+                    <div class="painel-icon">⚙️</div>
+                    <div class="painel-title">Configurações</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 Fisio+ | Sistema de Gestão Integrada.</p>
+    </footer>
+
+
+    <script>
+        window.onload = function() {
+            var estaLogado = localStorage.getItem('esta_logado');
+            var dadosUsuario = localStorage.getItem('usuario_fisio');
+
+
+            if (estaLogado === 'sim' && dadosUsuario) {
+                var usuario = JSON.parse(dadosUsuario);
+                var primeiroNome = usuario.nome.split(' ')[0];
+
+
+                // Atualiza Header
+                document.getElementById('menu-login').innerHTML = `<div class="user-area"><span>Olá, ${primeiroNome}</span><button class="btn-sair" onclick="sairDaConta()">Sair</button></div>`;
+               
+                // Ajusta Hero para modo Admin
+                document.getElementById('titulo-hero').innerText = "Bem-vindo ao Sistema";
+                document.getElementById('subtitulo-hero').innerText = "Gerencie sua clínica de forma simples e eficiente.";
+                document.getElementById('cta-container').style.display = 'none';
+                document.getElementById('hero-section').style.height = '250px'; // Hero menor quando logado
+
+
+                // ESCONDER SEÇÕES DE MARKETING (Visitante)
+                document.getElementById('secao-marketing').style.display = 'none';
+                document.getElementById('secao-info-1').style.display = 'none';
+                document.getElementById('secao-info-2').style.display = 'none';
+                document.getElementById('menu-servicos').style.display = 'none';
+               
+                // MOSTRAR PAINEL
+                document.getElementById('painel-gestao').style.display = 'block';
+            }
+        };
+
+
+        function sairDaConta() {
+            localStorage.removeItem('esta_logado');
+            window.location.reload();
+        }
+    </script>
+
+
+</body>
+</html>

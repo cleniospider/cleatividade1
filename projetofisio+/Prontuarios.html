@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+ <title>Prontuários | Fisio+</title>
+ <link rel="stylesheet" href="Prontuarios.css">
+</head>
+<body>
+ <div class="container">
+ <header class="page-header">
+ <h1>Evolução Clínica</h1>
+ <a href="index.html" class="btn-link">← Voltar ao
+Painel</a>
+ </header>
+ <section class="card">
+ <h3>Nova Anotação</h3>
+
+ <div class="form-group">
+ <label>Nome do Paciente</label>
+ <input type="text" id="nome-paciente"
+placeholder="Digite o nome completo.">
+ </div>
+ <div style="display: grid; grid-template-columns: 1fr 1fr;
+gap: 15px;">
+ <div class="form-group">
+ <label>Data do Atendimento</label>
+ <input type="date" id="data-atendimento">
+ </div>
+ <div class="form-group">
+ <label>Profissional Responsável</label>
+ <input type="text" id="profissional-nome"
+placeholder="Nome do fisioterapeuta">
+ </div>
+ </div>
+ <div class="form-group">
+ <label>Descrição do Quadro e Conduta</label>
+ <textarea id="texto-prontuario" rows="10"
+placeholder="Relate a evolução motora, queixas, testes realizados e
+exercícios aplicados..."></textarea>
+ </div>
+ <div style="text-align: right;">
+ <button class="btn btn-primary"
+onclick="salvarProntuario()">Finalizar</button>
+ </div>
+ </section>
+ <script>
+ function salvarProntuario() {
+ // Lógica de salvamento personalizada aqui
+ alert("Registro salvo com sucesso!");
+ }
+ </script>
+</body>
+</html>
